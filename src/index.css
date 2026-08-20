@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* WALK Experiential — design system. All tokens live here. */
+
+@layer base {
+  :root {
+    /* Light, airy base */
+    --background: 40 24% 98%;
+    --foreground: 222 22% 12%;
+
+    --surface: 0 0% 100%;
+    --surface-2: 40 18% 95%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 22% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 22% 12%;
+
+    /* Brand — taken from the WALK wordmark */
+    --brand-red: 8 85% 53%;
+    --brand-blue: 213 63% 43%;
+    --brand-teal: 174 59% 47%;
+    --brand-gold: 33 92% 55%;
+    --brand-charcoal: 240 1% 35%;
+
+    --primary: 213 63% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 18% 94%;
+    --secondary-foreground: 222 22% 12%;
+
+    --muted: 40 18% 94%;
+    --muted-foreground: 222 10% 42%;
+
+    --accent: 174 59% 47%;
+    --accent-foreground: 222 22% 12%;
+
+    --destructive: 8 85% 53%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 14% 89%;
+    --input: 222 14% 89%;
+    --ring: 213 63% 43%;
+
+    --radius: 0.75rem;
+
+    --gradient-walk: linear-gradient(
+      90deg,
+      hsl(var(--brand-red)) 0%,
+      hsl(265 45% 50%) 26%,
+      hsl(var(--brand-blue)) 50%,
+      hsl(var(--brand-teal)) 74%,
+      hsl(var(--brand-gold)) 100%
+    );
+    --gradient-wash: radial-gradient(
+        60% 60% at 12% 8%,
+        hsl(var(--brand-red) / 0.1) 0%,
+        transparent 60%
+      ),
+      radial-gradient(55% 55% at 88% 20%, hsl(var(--brand-teal) / 0.12) 0%, transparent 60%),
+      radial-gradient(60% 60% at 70% 90%, hsl(var(--brand-gold) / 0.12) 0%, transparent 60%);
+
+    --shadow-cinema: 0 24px 60px -28px hsl(222 30% 20% / 0.28);
+    --shadow-glass: 0 12px 40px -12px hsl(222 30% 20% / 0.18);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 22% 12%;
+    --sidebar-primary: 213 63% 43%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 18% 94%;
+    --sidebar-accent-foreground: 222 22% 12%;
+    --sidebar-border: 222 14% 89%;
+    --sidebar-ring: 213 63% 43%;
+  }
+
+  /* Kept for text-dense reading views — same light system */
+  .surface-light {
+    --background: 0 0% 100%;
+    --surface: 40 18% 97%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--brand-teal) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background-image: var(--gradient-walk);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-rule {
+    background-image: var(--gradient-walk);
+  }
+
+  .display {
+    @apply font-display font-extrabold uppercase leading-[1.02] tracking-[-0.02em];
+  }
+
+  .container-walk {
+    @apply mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-16;
+  }
+
+  /* Liquid glass */
+  .glass {
+    background: hsl(0 0% 100% / 0.55);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.7);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 hsl(0 0% 100% / 0.8);
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: "";
+    background-image: var(--gradient-walk);
+    @apply absolute -bottom-1 left-0 h-[2px] w-full origin-bottom-right scale-x-0 transition-transform duration-300;
+  }
+  .link-underline:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground;
+  }
+}
